@@ -73,6 +73,7 @@ module DynamicImageElements
     # Tolerance of space to drawing because <tt>Pango::Layout</tt> doesn't fix exactly to given size
     SIZE_TOLERANCE = 0
     def setup_pango_layout(pango_layout)
+      pango_layout.context.resolution = @options[:resolution] if @options[:resolution]
       pango_layout.set_width((@parent.width-@margin[1]-@margin[3]+SIZE_TOLERANCE)*Pango::SCALE) if @parent.width
       pango_layout.set_font_description Pango::FontDescription.new(@options[:font].to_s) if @options[:font]
       pango_layout.set_width @options[:width]*Pango::SCALE if @options[:width]
